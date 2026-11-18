@@ -3,6 +3,8 @@
 本人完成的文件：`image_encoder.py`（补全 TODO-01 ~ TODO-06）。
 其余文件（`preprocess_image.py`、`helpers.py`、`runtime.py`、`run.py`、`check.py`、`transformer_steps.py`、权重与参考数据）均为课程提供，未做任何修改。
 
+代码仓库：https://github.com/66LzC66/project1-numpy-vit-encoder
+
 ## 环境
 
 - Python 3.9 及以上（本机使用 3.13 验证）
