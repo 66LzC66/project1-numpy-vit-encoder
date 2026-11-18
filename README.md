@@ -86,6 +86,32 @@ python check.py --stage patches && python check.py --stage tokens \
 | 05 | `embed` | `patches @ patch_weight.T`（无 bias）+ CLS + 位置嵌入 |
 | 06 | `__call__` | 取 CLS → post_norm → `visual.proj` → 单位化 |
 
+### 关键实现（Highlight Your Code）
+
+**Patch 切分** —— 先 `reshape` 把"块索引"与"块内坐标"分离，再 `transpose` 排成 patch 行优先、块内 C,H,W：
+
+```python
+x = images.reshape(B, 3, 7, 32, 7, 32)
+x = x.transpose(0, 2, 4, 1, 3, 5)
+patches = x.reshape(B, 49, 3072)
+```
+
+**多头注意力** —— 四维 `k` 只用 `swapaxes(-1,-2)` 转置（`k.T` 会把 batch 维也翻转），缩放因子写 `np.float32(64)` 以保持 float32：
+
+```python
+scores = (q @ k.swapaxes(-1,-2)) / np.sqrt(np.float32(64))
+context = attention_weights(scores) @ v
+merged = context.transpose(0,2,1,3).reshape(B,N,768)
+```
+
+**残差 + MLP** —— Pre-LN、两次残差、无 LayerScale：
+
+```python
+residual = x + attn(norm1(x))
+hidden = gelu(norm2(residual) @ W1.T + b1)
+return residual + hidden @ W2.T + b2
+```
+
 三个必须记住的约定：
 
 1. 线性层权重按 `[out,in]` 存放，统一 `x @ W.T + b`；**唯一例外** `visual.proj` 已是 `[in,out]=[768,512]`，不转置。
