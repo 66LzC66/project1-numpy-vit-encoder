@@ -1,0 +1,22 @@
+# 课程提供的大文件不属于提交内容，且不纳入版本控制
+weights/*.npz
+assets/reference_outputs.npz
+assets/images/
+
+# 运行产物
+*.npz
+output_tokens.npz
+my_tokens.npz
+
+# Python / 环境 / 编辑器
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+_build/
+
+# 临时检查文件
+_check.pdf
+_pg*.png
+.DS_Store
+Thumbs.db
