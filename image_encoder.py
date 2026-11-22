@@ -2,15 +2,15 @@
 
 Complete TODO-01 through TODO-06 using NumPy. Model parameters are supplied.
 The public classes retain the final project's interface. helpers.py is provided.
-阶段	需要完成	
-patches	TODO-01	 
-tokens	TODO-05a、05b	
-block0	TODO-02、03a、03b、03c、04a、04b	
-last_tokens	无新增，12 层循环	
-output	TODO-06	
-batch	无新增，验证批处理	
-依据check.py，要按这个顺序完成
 """
+
+# 实现顺序（依据 check.py 的阶段划分，按数据流推进而非按 TODO 编号）：
+#   patches     → TODO-01
+#   tokens      → TODO-05a、TODO-05b
+#   block0      → TODO-02、TODO-03a、TODO-03b、TODO-03c、TODO-04a、TODO-04b
+#   last_tokens → 无新增 TODO，12 层循环自动跑通
+#   output      → TODO-06
+#   batch       → 无新增 TODO，验证按批计算而非缓存参考结果
 
 
 import numpy as np
@@ -35,9 +35,9 @@ class MultiHeadAttention:
         """
         # TODO-02 contract: [B,N,D] to [B,H,N,D/H].
         # Image model: D=768, H=12, D/H=64.
-        #x是q/k/v中的一个
-        """拆成多个头让12个64维子空间各自独立算 softmax attention，
-        分别学习不同的token关系模式，表达力更强而总计算量几乎不变"""
+        # x 是 q/k/v 中的一个。
+        # 拆成多个头，让 12 个 64 维子空间各自独立计算 softmax attention，
+        # 分别学习不同的 token 关系模式，表达力更强而总计算量几乎不变。
         B, N, D = x.shape
         x = x.reshape(B, N, self.heads, self.head_dim)
         #x[b, n, h, :] 就是第 b 张图、第 n 个 token、第 h 个头的 64 维向量
