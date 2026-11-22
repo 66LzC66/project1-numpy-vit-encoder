@@ -124,6 +124,11 @@ return residual + hidden @ W2.T + b2
 
 完整实验报告见 `report/实验报告-Project1-NumPy复现ViT-B-32.docx`，采用学校实验报告模板，含封面、四章节、误差表与两张架构图；正文 4 页（另有封面）。
 
+另提供 LaTeX 版（Overleaf 模板，XeLaTeX 编译，代码以红色等宽字体高亮）：
+
+- 项目源码：https://www.overleaf.com/project/6b0195185fd79bc4bc3c50ad/share#0faddc3cb50f3f633b7978ede6fc41738a13f9a24063e54d
+- 编译产物：`report/` 目录下的 Word 版与 `submission-final.zip` 中的 `实验报告-Project1-Overleaf版.pdf`（6 页，正文 4 页）
+
 ## 声明
 
 六个 TODO 的设计与实现、形状推导、数值验收、架构图与报告撰写由本人完成。AI 助手用于作业材料梳理、实现方案讨论、图示排版与文稿修改；最终代码与结论均经本人运行验证。课程提供的文件（见目录标注）未作修改。
