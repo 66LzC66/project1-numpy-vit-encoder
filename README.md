@@ -38,13 +38,15 @@
 ├── assets/README.md          说明：需放入课程附件的图片与参考数据
 └── report/
     ├── 实验报告-Project1-NumPy复现ViT-B-32.docx   实验报告（深圳大学模板）
-    ├── 报告正文.md                                报告 Markdown 源稿
     ├── README.md                                  提交说明与运行命令
-    ├── 架构图-ProcessOn输入.md                    绘图需求与 Mermaid 源码
     └── figures/
         ├── fig1_主干.png                          主干流水线（A4 排版版）
-        └── fig2_block.png                         单个 Transformer Block（A4 排版版）
+        ├── fig2_block.png                         单个 Transformer Block（A4 排版版）
+        ├── fig3_终端验收.png                       check.py --stage all 的真实终端输出
+        └── fig4_误差与容差.png                     各阶段实测误差与判定容差（对数坐标）
 ```
+
+课程还附带 `lecture-demos/`（5 个独立教学脚本 + 预期输出）与 `practice/project1_exercises.pdf`（练习册）。它们使用固定的玩具张量，**不参与本实现的计算链路**，也不产出可与 `check.py` 比对的输出，因此未纳入本仓库；按需从课程附件获取即可。
 
 ## 快速开始
 
